@@ -32,7 +32,7 @@ class _Livetest2State extends State<Livetest2> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Confirmation"),
-          content: Text("Are you sure for delete ${_tasks[index]}?"),
+          content: Text("Are you sure for delete ${_tasks[index]}"),
           actions: [
             IconButton(
               onPressed: () {
