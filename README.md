@@ -1,16 +1,26 @@
-# assignment2
+🌐 Responsive Grid Layout - Flutter
 
-A new Flutter project.
+This Flutter project displays a list of countries using responsive cards. The layout automatically adjusts based on the screen size:
 
-## Getting Started
+- 📱 Mobile: 2 cards per row
+- 📲 Tablet: 3 cards per row
+- 💻 Desktop/Web: 4 cards per row
 
-This project is a starting point for a Flutter application.
+🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- Fully responsive UI
+- Dynamic layout using `GridView.builder`
+- Clean and minimal design
+- Flutter-based card components
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📸 Screenshots
+📱 Mobile: 2 cards per row
+![image](https://github.com/user-attachments/assets/4d2c15b5-0680-4c45-8cc0-543e4eb12696)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+🛠️ How to Run
+
+```bash
+flutter pub get
+flutter run
