@@ -88,10 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(
                     children: [
                       TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, ForgotpasswordScreen.name);
-                        },
+                        onPressed: _onTapForgotPasswordButton,
                         child: Text(
                           'Forgot Password',
                           style: TextStyle(
@@ -138,8 +135,9 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  void _onTapForgotPasswordButton() {}
-
+  void _onTapForgotPasswordButton() {
+    Navigator.pushNamed(context, ForgotpasswordScreen.name);
+  }
 
   void _onTapSignUpButton() {
     Navigator.pushNamed(context, SignUpScreen.name);

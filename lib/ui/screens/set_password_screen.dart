@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 class SetPasswordScreen extends StatefulWidget {
@@ -11,6 +12,10 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
+  final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _confirmPassTEController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,29 +41,40 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   height: 24,
                 ),
                 TextFormField(
+                  controller: _passwordTEController,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     hintText: 'password',
                   ),
+                  validator: (String? value) {
+                    if ((value?.length ?? 0) <= 6) {
+                      return 'Enter a valid password';
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 TextFormField(
+                  controller: _confirmPassTEController,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    hintText: 'confirm password',
+                    hintText: 'Confirm password',
                   ),
+                  validator: (String? value) {
+                    if ((value ?? '') == _passwordTEController.text) {
+                      return 'Confirm Password doesnt match';
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, SetPasswordScreen.name);
-                  },
-                  child: Text('Verify'),
+                  onPressed: _onTapSubmitButton,
+                  child: Text('Confirm'),
                 ),
                 SizedBox(
                   height: 32,
@@ -91,5 +107,21 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  void _onTapSubmitButton() {
+    Navigator.pushNamed(context, SetPasswordScreen.name);
+  }
+
+  void _onTapSignInButton() {
+    Navigator.pushNamedAndRemoveUntil(
+        context, SignInScreen.name, (predicate) => false);
+  }
+
+  @override
+  void dispose() {
+    _passwordTEController.dispose();
+    _confirmPassTEController.dispose();
+    super.dispose();
   }
 }

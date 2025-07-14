@@ -1,4 +1,5 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'pin_verification_screen.dart';
@@ -59,10 +60,7 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, PinVerificationScreen.name);
-                  },
+                  onPressed: _onTapSubmitButton,
                   child: Icon(Icons.arrow_circle_right_outlined),
                 ),
                 SizedBox(
@@ -85,6 +83,8 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                             fontWeight: FontWeight.w700,
                             letterSpacing: 0.4,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = _onTapSignInButton,
                         ),
                       ],
                     ),
@@ -99,12 +99,15 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
   }
 
   void _onTapSubmitButton() {
-    if (_formkey.currentState!.validate()) {
-      // TODO : sign in with API;
-    }
+    // if (_formkey.currentState!.validate()) {
+    //   // TODO : sign in with API;
+    // }
+    Navigator.pushNamed(context, PinVerificationScreen.name);
   }
 
-  void _onTapSignInButton() {}
+  void _onTapSignInButton() {
+    Navigator.pop(context);
+  }
 
   @override
   void dispose() {
