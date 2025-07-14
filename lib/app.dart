@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/forgotPassword.dart';
+import 'package:task_manager/ui/screens/pin_verification_screen.dart';
+import 'package:task_manager/ui/screens/set_password_screen.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
+import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
@@ -54,7 +59,18 @@ class TaskManagerApp extends StatelessWidget {
           ),
 
 
-      home: SplashScreen(),
+      initialRoute: '/',
+
+      routes: {
+        SplashScreen.name : (context) => SplashScreen(),
+        SignInScreen.name :(context) => SignInScreen(),
+        ForgotpasswordScreen.name :(context) => ForgotpasswordScreen(),
+        PinVerificationScreen.name :(context) => PinVerificationScreen(),
+        SetPasswordScreen.name :(context) => SetPasswordScreen(),
+        SignUpScreen.name: (context) => SignUpScreen(),
+
+
+      },
     );
   }
 }

@@ -1,10 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/forgotPassword.dart';
+import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
+
+  static const String name = '/sign-in';
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -64,7 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     hintText: 'Password',
                   ),
                   validator: (String? value) {
-                    if ((value?.length ?? 0) <=6) {
+                    if ((value?.length ?? 0) <= 6) {
                       return 'Enter a valid password';
                     }
                     return null;
@@ -84,7 +88,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, ForgotpasswordScreen.name);
+                        },
                         child: Text(
                           'Forgot Password',
                           style: TextStyle(
@@ -109,7 +116,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 letterSpacing: 0.4,
                               ),
                               recognizer: TapGestureRecognizer()
-                                ..onTap = _onTapSignInButton,
+                                ..onTap = _onTapSignUpButton,
                             ),
                           ],
                         ),
@@ -132,7 +139,11 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _onTapForgotPasswordButton() {}
-  void _onTapSignUpButton() {}
+
+
+  void _onTapSignUpButton() {
+    Navigator.pushNamed(context, SignUpScreen.name);
+  }
 
   @override
   void dispose() {
