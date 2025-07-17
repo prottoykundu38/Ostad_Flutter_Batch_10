@@ -14,6 +14,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   final TextEditingController _subjectTEcontroller = TextEditingController();
   final TextEditingController _descriptionTEcontroller =
       TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +22,8 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,6 +38,12 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                   height: 24,
                 ),
                 TextFormField(
+                  validator: (String? value) {
+                    if (value?.trim().isEmpty ?? true) {
+                      return 'Enter Your Title';
+                    }
+                    return null;
+                  },
                   controller: _subjectTEcontroller,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
@@ -45,6 +54,12 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                   height: 16,
                 ),
                 TextFormField(
+                  validator: (String? value) {
+                    if (value?.trim().isEmpty ?? true) {
+                      return 'Enter Your Title';
+                    }
+                    return null;
+                  },
                   controller: _descriptionTEcontroller,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
@@ -56,7 +71,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _onTapSubmitButton,
                   child: Icon(Icons.arrow_circle_right_rounded),
                 ),
               ],
@@ -65,5 +80,16 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
         ),
       ),
     );
+  }
+
+  void _onTapSubmitButton() {
+    if (_formKey.currentState!.validate()) {}
+    Navigator.pop(context);
+  }
+
+  void _dispose() {
+    _subjectTEcontroller.dispose();
+    _descriptionTEcontroller.dispose();
+    super.dispose();
   }
 }

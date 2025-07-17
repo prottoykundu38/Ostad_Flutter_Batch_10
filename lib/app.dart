@@ -7,15 +7,20 @@ import 'package:task_manager/ui/screens/set_password_screen.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
+import 'package:task_manager/ui/screens/update_profile_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
 
+  static GlobalKey<NavigatorState> navigator =
+      GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigator,
       theme: ThemeData(
-        colorSchemeSeed: Colors.green,
+          colorSchemeSeed: Colors.green,
           textTheme: TextTheme(
             titleLarge: TextStyle(
               fontSize: 28,
@@ -54,26 +59,20 @@ class TaskManagerApp extends StatelessWidget {
             ),
           ),
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.green,
-            )
-          )
-          ),
-
-
+              style: TextButton.styleFrom(
+            foregroundColor: Colors.green,
+          ))),
       initialRoute: '/',
-
       routes: {
-        SplashScreen.name : (context) => SplashScreen(),
-        SignInScreen.name :(context) => SignInScreen(),
-        ForgotpasswordScreen.name :(context) => ForgotpasswordScreen(),
-        PinVerificationScreen.name :(context) => PinVerificationScreen(),
-        SetPasswordScreen.name :(context) => SetPasswordScreen(),
+        SplashScreen.name: (context) => SplashScreen(),
+        SignInScreen.name: (context) => SignInScreen(),
+        ForgotpasswordScreen.name: (context) => ForgotpasswordScreen(),
+        PinVerificationScreen.name: (context) => PinVerificationScreen(),
+        SetPasswordScreen.name: (context) => SetPasswordScreen(),
         SignUpScreen.name: (context) => SignUpScreen(),
-        MainNavBarHolderScreen.name:(context) => MainNavBarHolderScreen(),
+        MainNavBarHolderScreen.name: (context) => MainNavBarHolderScreen(),
         AddNewTaskScreen.name: (context) => const AddNewTaskScreen(),
-
-
+        UpdateProfileScreen.name: (context) => const UpdateProfileScreen(),
       },
     );
   }
