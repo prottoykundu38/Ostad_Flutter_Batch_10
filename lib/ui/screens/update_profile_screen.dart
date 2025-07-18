@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/tm_app_bar.dart';
 
@@ -19,6 +20,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final TextEditingController _lnameTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile? _selectedImage;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -46,7 +49,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                
+                build_photo_picker(),
+                const SizedBox(
+                  height: 24,
+                ),
                 TextFormField(
                   controller: _emailTEController,
                   textInputAction: TextInputAction.next,
@@ -132,35 +138,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: _onTapSignUpButton,
+                  onPressed: _onTapSubmitButton,
                   child: Icon(Icons.arrow_circle_right_outlined),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: "Have an account? ",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                        letterSpacing: 0.4, // applies here
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'Sign In',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.4,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = _onTapSignInButton,
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),
@@ -170,9 +149,60 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     );
   }
 
-  void _onTapSignUpButton() {
+  Widget build_photo_picker() {
+    return GestureDetector(
+      onTap: _onTapPhotoPicker,
+      child: Container(
+        height: 50,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                ),
+              ),
+              alignment: Alignment.center,
+              child: Text('Photo'),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              _selectedImage == null ? 'Select Image' : _selectedImage!.name,
+              maxLines: 1,
+              style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onTapPhotoPicker() async {
+    final XFile? pickedImage =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      _selectedImage = pickedImage;
+      setState(() {});
+    }
+  }
+
+  void _onTapSubmitButton() {
     if (_formkey.currentState!.validate()) {
-      // TODO : sign in with API;
+      // TODO : update profile with API
     }
   }
 
