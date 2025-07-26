@@ -1,10 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/service/network_caller.dart';
+import 'package:task_manager/data/service/urls.dart';
 import 'package:task_manager/ui/screens/forgotPassword.dart';
 import 'package:task_manager/ui/screens/main_nav_bar_holder_screen.dart';
 import 'package:task_manager/ui/screens/sign_up_screen.dart';
+import 'package:task_manager/ui/widgets/centered_circular_progressIndicaator.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
+import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -18,8 +22,8 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
-
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _signInProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +82,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   height: 16,
                 ),
-                ElevatedButton(
-                  onPressed: _onTapSignInButton,
-                  child: Icon(Icons.arrow_circle_right_outlined),
+                Visibility(
+                  visible: _signInProgress == false,
+                  replacement: CenteredCircularProgressindicaator(),
+                  child: ElevatedButton(
+                    onPressed: _onTapSignInButton,
+                    child: Icon(Icons.arrow_circle_right_outlined),
+                  ),
                 ),
                 const SizedBox(
                   height: 32,
@@ -132,10 +140,32 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void _onTapSignInButton() {
     if (_formkey.currentState!.validate()) {
-      // TODO : sign in with API;
+      _signIn();
     }
-    Navigator.pushNamedAndRemoveUntil(
-        context, MainNavBarHolderScreen.name, (predicate) => false);
+  }
+
+  Future<void> _signIn() async {
+    _signInProgress = true;
+    setState(() {});
+
+    Map<String, String> requestBody = {
+      "email": _emailTEController.text.trim(),
+      "password": _passwordTEController.text,
+    };
+
+    NetworkResponse response = await NetworkCaller.postRequest(
+      url: Urls.loginUrl,
+      body: requestBody,
+    );
+
+    if (response.isSuccess) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, MainNavBarHolderScreen.name, (predicate) => false);
+    } else {
+      _signInProgress = false;
+      setState(() {});
+      showSnackbarMessage(context, response.errorMessage!);
+    }
   }
 
   void _onTapForgotPasswordButton() {

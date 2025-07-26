@@ -1,7 +1,11 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/service/network_caller.dart';
+import 'package:task_manager/data/service/urls.dart';
+import 'package:task_manager/ui/widgets/centered_circular_progressIndicaator.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
+import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -18,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _lnameTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+  bool _signUpInProgress = false;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -65,7 +70,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _fnameTEController,
                   textInputAction: TextInputAction.next,
-                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'First Name',
                   ),
@@ -81,7 +85,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _lnameTEController,
                   textInputAction: TextInputAction.next,
-                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Last Name',
                   ),
@@ -97,7 +100,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _mobileTEController,
                   textInputAction: TextInputAction.next,
-                  obscureText: true,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     hintText: 'Mobile',
@@ -128,9 +130,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 16,
                 ),
-                ElevatedButton(
-                  onPressed: _onTapSignUpButton,
-                  child: Icon(Icons.arrow_circle_right_outlined),
+                Visibility(
+                  visible: _signUpInProgress == false,
+                  replacement: CenteredCircularProgressindicaator(),
+                  child: ElevatedButton(
+                    onPressed: _onTapSignUpButton,
+                    child: Icon(Icons.arrow_circle_right_outlined),
+                  ),
                 ),
                 const SizedBox(
                   height: 32,
@@ -167,9 +173,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  void _clearTextFields() {
+    _fnameTEController.clear();
+    _lnameTEController.clear();
+    _emailTEController.clear();
+    _mobileTEController.clear();
+    _passwordTEController.clear();
+  }
+
   void _onTapSignUpButton() {
     if (_formkey.currentState!.validate()) {
-      // TODO : sign in with API;
+      _signUp();
+    }
+  }
+
+  Future<void> _signUp() async {
+    _signUpInProgress = true;
+    setState(() {});
+    Map<String, String> requestBody = {
+      "email": _emailTEController.text.trim(),
+      "firstName": _fnameTEController.text.trim(),
+      "lastName": _lnameTEController.text.trim(),
+      "mobile": _mobileTEController.text.trim(),
+      "password": _passwordTEController.text,
+    };
+    NetworkResponse response = await NetworkCaller.postRequest(
+        url: Urls.registrationUrl, body: requestBody);
+
+    _signUpInProgress = false;
+    setState(() {});
+
+    if (response.isSuccess) {
+      _clearTextFields();
+      showSnackbarMessage(
+          context, 'Registration has been succes. Please log in');
+    } else {
+      showSnackbarMessage(context, response.errorMessage!);
     }
   }
 

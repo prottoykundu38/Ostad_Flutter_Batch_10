@@ -16,7 +16,7 @@ class NetworkResponse {
 }
 
 class NetworkCaller {
-  static const String _defaultErrorMessage = 'Something Went Worng';
+  static const String _defaultErrorMessage = 'Something Went Wrong';
   static Future<NetworkResponse> getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
@@ -43,37 +43,33 @@ class NetworkCaller {
     }
   }
 
-
-
-
-  static Future<NetworkResponse> postRequest({required String url,Map<String,String>?body}) async {
+  static Future<NetworkResponse> postRequest(
+      {required String url, Map<String, String>? body}) async {
     try {
       Uri uri = Uri.parse(url);
       Response response = await post(
         uri,
         headers: {
-          'content-type':'application/json',
+          'content-type': 'application/json',
         },
-        body: jsonEncode(body));
+        body: jsonEncode(body),
+      );
 
-      if (response.statusCode == 200) {
-        final decodedjsone = jsonDecode(response.body);
-        return NetworkResponse(
-          isSuccess: true,
-          statusCode: response.statusCode,
-          body: decodedjsone,
-        );
-      } else {
-        final decodedjsone = jsonDecode(response.body);
-        return NetworkResponse(
-            isSuccess: true,
-            statusCode: response.statusCode,
-            body: decodedjsone,
-            errorMessage: decodedjsone['data'] ?? _defaultErrorMessage);
-      }
+      final decodedJson = jsonDecode(response.body);
+
+      return NetworkResponse(
+        isSuccess: response.statusCode == 200 &&
+            decodedJson['status']?.toString().toLowerCase() == 'success',
+        statusCode: response.statusCode,
+        body: decodedJson,
+        errorMessage: decodedJson['data']?.toString() ?? _defaultErrorMessage,
+      );
     } catch (e) {
       return NetworkResponse(
-          isSuccess: false, statusCode: -1, errorMessage: e.toString());
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
     }
   }
 }
