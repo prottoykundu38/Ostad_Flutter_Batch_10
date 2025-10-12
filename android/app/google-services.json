@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "441938722137",
+    "firebase_url": "https://ostad10-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ostad10",
+    "storage_bucket": "ostad10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441938722137:android:7a420c7dbc7ecacedb6048",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACd6me87cNTgauJy7abpAfQdm-GmMP36I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441938722137:android:5791f58bb2aa0da8db6048",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACd6me87cNTgauJy7abpAfQdm-GmMP36I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
