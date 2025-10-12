@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/auth/presentation/screens/splash_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _CraftyBayState extends State<CraftyBay> {
         Locale('en'), // English
         Locale('bn'), // Spanish
       ],
+      home: SplashScreen(),
     );
   }
 }
