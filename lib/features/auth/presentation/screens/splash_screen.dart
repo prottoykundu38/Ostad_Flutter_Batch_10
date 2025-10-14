@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/app/extensions/localizations_extensions.dart';
+import 'package:e_commerce_app/features/shared/presentation/widgets/language_change_switch.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:e_commerce_app/l10n/app_localizations_bn.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(context.Localizations.hello),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(context.Localizations.hello),
+            // LanguageChangeSwitch(),
+          ],
+        ),
       ),
     );
   }
