@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/app/app.dart';
+import 'package:e_commerce_app/app/utils/app_version_service.dart';
 import 'package:e_commerce_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -24,6 +25,8 @@ Future<void> main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
+  await AppVersionService.getCurrentAppVersion();
 
   runApp(const CraftyBay());
 }
