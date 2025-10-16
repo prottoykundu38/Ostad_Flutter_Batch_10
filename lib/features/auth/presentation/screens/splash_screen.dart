@@ -1,13 +1,13 @@
-import 'package:e_commerce_app/app/asset_paths.dart';
-import 'package:e_commerce_app/app/extensions/localizations_extensions.dart';
 import 'package:e_commerce_app/app/utils/app_version_service.dart';
-import 'package:e_commerce_app/features/shared/presentation/widgets/language_change_switch.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
-import 'package:e_commerce_app/l10n/app_localizations_bn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
+  static var name;
+
   const SplashScreen({super.key});
 
   @override
@@ -15,6 +15,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _moveToNextScreen();
+  }
+
+  Future<void> _moveToNextScreen() async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pushReplacementNamed(context, SignInScreen.name);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Spacer(),
-              SvgPicture.asset(
-                Assetpaths.logoSvg,
-                width: 120,
-              ),
+              AppLogo(),
               Spacer(),
               CircularProgressIndicator(),
               SizedBox(
