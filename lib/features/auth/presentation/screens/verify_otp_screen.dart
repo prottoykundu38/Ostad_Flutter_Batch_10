@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,31 @@ class VerifyOtpScreen extends StatefulWidget {
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController _otpTEControler = TextEditingController();
 
+  Timer? _timer;
+  int _remainingSeconds = 0; // initially no countdown
+  bool _canResend = false; // resend button state
+  bool _timerStarted = false; // to track if timer started or not
+
+  void _startTimer() {
+    _timer?.cancel();
+    _remainingSeconds = 120;
+    _canResend = false;
+    _timerStarted = true;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingSeconds > 0) {
+        setState(() {
+          _remainingSeconds--;
+        });
+      } else {
+        timer.cancel();
+        setState(() {
+          _canResend = true;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme = Theme.of(context).textTheme;
@@ -25,26 +51,18 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                SizedBox(
-                  height: 24,
-                ),
-                AppLogo(
-                  width: 80,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
+                const SizedBox(height: 24),
+                const AppLogo(width: 80),
+                const SizedBox(height: 12),
                 Text(
                   'Enter OTP Code',
                   style: TextTheme.titleLarge,
                 ),
                 Text(
-                  'A 6 digit OTP code has been send to your email',
+                  'A 6 digit OTP code has been sent to your email',
                   style: TextTheme.bodyLarge?.copyWith(color: Colors.grey),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 PinCodeTextField(
                   length: 6,
                   obscureText: false,
@@ -53,21 +71,37 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     shape: PinCodeFieldShape.box,
                   ),
                   animationType: AnimationType.fade,
-                  animationDuration: Duration(milliseconds: 300),
+                  animationDuration: const Duration(milliseconds: 300),
                   onChanged: (value) {},
                   appContext: context,
                   controller: _otpTEControler,
                 ),
                 FilledButton(
                   onPressed: _onTapVerifyButton,
-                  child: Text('SignUp'),
+                  child: const Text('SignUp'),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 TextButton(
-                    onPressed: _onTapBackToLogInButton,
-                    child: Text('Back to Login')),
+                  onPressed: _onTapBackToLogInButton,
+                  child: const Text('Back to Login'),
+                ),
+                const SizedBox(height: 30),
+
+                // 👇 Only show countdown section after pressing SignUp
+                if (_timerStarted) ...[
+                  Text(
+                    'This code will resend in $_remainingSeconds sec',
+                    style: TextTheme.bodyMedium?.copyWith(color: Colors.grey),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: _canResend ? _onTapResendOtp : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _canResend ? Colors.blue : Colors.grey,
+                    ),
+                    child: const Text('Resend OTP'),
+                  ),
+                ],
               ],
             ),
           ),
@@ -77,15 +111,24 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   }
 
   void _onTapVerifyButton() {
-    Navigator.pushNamed(context, VerifyOtpScreen.name);
+    // Start countdown when user presses SignUp
+    if (!_timerStarted) {
+      _startTimer();
+    }
   }
 
   void _onTapBackToLogInButton() {
     Navigator.pushNamedAndRemoveUntil(context, SignInScreen.name, (p) => false);
   }
 
+  void _onTapResendOtp() {
+
+    _startTimer(); 
+  }
+
   @override
   void dispose() {
+    _timer?.cancel();
     _otpTEControler.dispose();
     super.dispose();
   }
