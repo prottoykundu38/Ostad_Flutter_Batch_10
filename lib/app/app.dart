@@ -1,9 +1,8 @@
 import 'package:e_commerce_app/app/app_theme.dart';
 import 'package:e_commerce_app/app/controller/language_cotroller.dart';
-import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
-import 'package:e_commerce_app/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:e_commerce_app/app/controller_binder.dart';
+import 'package:e_commerce_app/app/utils/routes.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/splash_screen.dart';
-import 'package:e_commerce_app/features/auth/presentation/screens/verify_otp_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class _CraftyBayState extends State<CraftyBay> {
     return GetBuilder(
         init: CraftyBay.languageCotroller,
         builder: (languageCotroller) {
-          return MaterialApp(
+          return GetMaterialApp(
             localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -46,23 +45,8 @@ class _CraftyBayState extends State<CraftyBay> {
             themeMode: ThemeMode.dark,
             home: SplashScreen(),
             initialRoute: SplashScreen.name,
-            onGenerateRoute: (setting) {
-              late Widget screen;
-
-              if (setting.name == SplashScreen.name) {
-                screen = SplashScreen();
-              } else if (setting.name == SignInScreen.name) {
-                screen = SignInScreen();
-              }
-              else if (setting.name == SignUpScreen.name) {
-                screen = SignUpScreen();
-              }
-              else if (setting.name == VerifyOtpScreen.name) {
-                screen = VerifyOtpScreen();
-              }
-
-              return MaterialPageRoute(builder: (ctx) => screen);
-            },
+            onGenerateRoute: onGenerateRoute,
+            initialBinding: ControllerBinding(),
           );
         });
   }

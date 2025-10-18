@@ -11,8 +11,8 @@ class AppTheme {
           titleLarge: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-          )
-        )
+          ),
+        ),
       );
   static ThemeData get darkThemeData => ThemeData(
         colorSchemeSeed: AppColors.themeColor,
@@ -38,18 +38,18 @@ class AppTheme {
       );
 
   static InputDecorationTheme get _inputDecorationTheme => InputDecorationTheme(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-          hintStyle: TextStyle(
-            fontWeight: FontWeight.w100,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.themeColor),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.themeColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.themeColor),
-          ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+        hintStyle: TextStyle(
+          fontWeight: FontWeight.w100,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.themeColor),
+        ),
       );
 }
