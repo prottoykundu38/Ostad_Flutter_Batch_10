@@ -1,12 +1,14 @@
+import 'package:e_commerce_app/app/app_colors.dart';
 import 'package:e_commerce_app/app/asset_paths.dart';
+import 'package:e_commerce_app/app/constants.dart';
 import 'package:e_commerce_app/features/home/widgets/app_bar_icon_button.dart';
 import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav_controller.dart';
 import 'package:e_commerce_app/features/shared/presentation/widgets/home_banner_slider.dart';
 import 'package:e_commerce_app/features/shared/presentation/widgets/product_category_item.dart';
+import 'package:e_commerce_app/features/shared/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,39 +41,47 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 16,
-            ),
-            _buildSearchBar(),
-            const HomeBannerSlider(),
-            const SizedBox(
-              height: 16,
-            ),
-            _buildSectionHeader(
-              title: 'All Categories',
-              onTapSeeAll: () {
-                Get.find<MainNavController>().changeIndex(1);
-              },
-            ),
-            _buildCategoryList(),
-            const SizedBox(
-              height: 16,
-            ),
-            _buildSectionHeader(
-              title: 'New',
-              onTapSeeAll: () {},
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            _buildSectionHeader(
-              title: 'Popular',
-              onTapSeeAll: () {
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 16,
+              ),
+              _buildSearchBar(),
+              const HomeBannerSlider(),
+              const SizedBox(
+                height: 16,
+              ),
+              _buildSectionHeader(
+                title: 'All Categories',
+                onTapSeeAll: () {
+                  Get.find<MainNavController>().changeIndex(1);
+                },
+              ),
+              _buildCategoryList(),
+              const SizedBox(
+                height: 16,
+              ),
+              _buildSectionHeader(
+                title: 'New',
+                onTapSeeAll: () {},
+              ),
+              _buildPopularProductList(),
+               _buildSectionHeader(
+                title: 'Special',
+                onTapSeeAll: () {},
+              ),
+              _buildPopularProductList(),
+              const SizedBox(
+                height: 16,
+              ),
+              _buildSectionHeader(
+                title: 'Popular',
+                onTapSeeAll: () {},
+              ),
+              _buildPopularProductList(),
+            ],
+          ),
         ),
       ),
     );
@@ -93,6 +103,31 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildNewProductList() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
+      ),
+    );
+  }
+  Widget _buildPopularProductList() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
+      ),
+    );
+  }
+  Widget _buildSpecialProductList() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
       ),
     );
   }

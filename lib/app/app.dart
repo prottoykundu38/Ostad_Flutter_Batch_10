@@ -43,7 +43,7 @@ class _CraftyBayState extends State<CraftyBay> {
           navigatorObservers: [observer],
           supportedLocales: languageCotroller.supportedLocales,
           theme: AppTheme.lightThemeData,
-          darkTheme: AppTheme.darkThemeData,
+          // darkTheme: AppTheme.darkThemeData,
           themeMode: ThemeMode.dark,
           home: const SplashScreen(),
           initialRoute: SplashScreen.name,
