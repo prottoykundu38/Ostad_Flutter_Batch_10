@@ -1,23 +1,30 @@
+import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav_controller.dart';
 import 'package:e_commerce_app/features/shared/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, required this.categoryName});
+class CartListScreen extends StatefulWidget {
+  const CartListScreen({super.key, required this.categoryName});
 
-  static const String name = '/product-list';
+  static const String name = '/cart-list';
 
   final String categoryName;
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<CartListScreen> createState() => _CartListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _CartListScreenState extends State<CartListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.categoryName),
+        leading: BackButton(
+          onPressed: (){
+            Get.find<MainNavController>().changeIndex(0);
+          },
+        ),
       ),
       body: GridView.builder(
           itemCount: 100,

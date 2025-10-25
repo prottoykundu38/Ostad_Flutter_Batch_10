@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/category/presentation/screens/cart_list_screen.dart';
 import 'package:e_commerce_app/features/category/presentation/screens/category_list_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/screens/home_screen.dart';
 import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav_controller.dart';
@@ -17,8 +18,8 @@ class _BottomNavHolderScreenState extends State<BottomNavHolderScreen> {
     HomeScreen(),
     CategoryListScreen(),
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    CartListScreen(categoryName: 'Wish list',),
+    
   ];
   @override
   Widget build(BuildContext context) {

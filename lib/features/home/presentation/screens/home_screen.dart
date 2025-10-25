@@ -1,11 +1,9 @@
-import 'package:e_commerce_app/app/app_colors.dart';
 import 'package:e_commerce_app/app/asset_paths.dart';
-import 'package:e_commerce_app/app/constants.dart';
 import 'package:e_commerce_app/features/home/widgets/app_bar_icon_button.dart';
 import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav_controller.dart';
-import 'package:e_commerce_app/features/shared/presentation/widgets/home_banner_slider.dart';
+import 'package:e_commerce_app/features/home/widgets/home_banner_slider.dart';
 import 'package:e_commerce_app/features/shared/presentation/widgets/product_category_item.dart';
-import 'package:e_commerce_app/features/shared/product_card.dart';
+import 'package:e_commerce_app/features/shared/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -64,7 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               _buildSectionHeader(
                 title: 'New',
-                onTapSeeAll: () {},
+                onTapSeeAll: () {
+                },
               ),
               _buildPopularProductList(),
                _buildSectionHeader(
@@ -99,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return const ProductCategoryItem();
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
+          return const SizedBox(
             width: 10,
           );
         },
@@ -107,27 +106,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildNewProductList() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
-      ),
-    );
-  }
   Widget _buildPopularProductList() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
-      ),
-    );
-  }
-  Widget _buildSpecialProductList() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [1, 2, 3, 4, 56].map((e) => ProductCard()).toList(),
+        children: [1, 2, 3, 4, 56].map((e) => const ProductCard()).toList(),
       ),
     );
   }
@@ -141,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        TextButton(onPressed: onTapSeeAll, child: Text('See all')),
+        TextButton(onPressed: onTapSeeAll, child: const Text('See all')),
       ],
     );
   }
