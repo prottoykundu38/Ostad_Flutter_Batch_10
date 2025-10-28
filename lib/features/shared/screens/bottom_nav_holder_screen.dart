@@ -1,4 +1,5 @@
-import 'package:e_commerce_app/features/category/presentation/screens/cart_list_screen.dart';
+import 'package:e_commerce_app/features/category/presentation/screens/cartScreen.dart';
+import 'package:e_commerce_app/features/category/presentation/screens/wish_list_screen.dart';
 import 'package:e_commerce_app/features/category/presentation/screens/category_list_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/screens/home_screen.dart';
 import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav_controller.dart';
@@ -17,8 +18,8 @@ class _BottomNavHolderScreenState extends State<BottomNavHolderScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     CategoryListScreen(),
-    HomeScreen(),
-    CartListScreen(categoryName: 'Wish list',),
+    Cartscreen(),
+    WishListScreen(categoryName: 'Wish list',),
     
   ];
   @override

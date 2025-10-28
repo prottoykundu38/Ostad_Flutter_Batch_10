@@ -133,7 +133,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     Text(
                       'The standard lorem ipsum passage has been a printers friend for centuries. Like stock photos today, it served as a placeholder for actual content. The original text comes from Ciceros philosophical work De Finibus Bonorum et Malorum, written in 45 BC.',
-                      style: TextStyle(fontWeight: FontWeight.w400,color: Colors.grey),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400, color: Colors.grey),
                     ),
                   ],
                 ),

@@ -3,18 +3,18 @@ import 'package:e_commerce_app/features/shared/presentation/widgets/product_card
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CartListScreen extends StatefulWidget {
-  const CartListScreen({super.key, required this.categoryName});
+class WishListScreen extends StatefulWidget {
+  const WishListScreen({super.key, required this.categoryName});
 
   static const String name = '/cart-list';
 
   final String categoryName;
 
   @override
-  State<CartListScreen> createState() => _CartListScreenState();
+  State<WishListScreen> createState() => _WishListScreenState();
 }
 
-class _CartListScreenState extends State<CartListScreen> {
+class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _CartListScreenState extends State<CartListScreen> {
         ),
       ),
       body: GridView.builder(
-          itemCount: 100,
+          itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             // crossAxisSpacing: 8,
             crossAxisCount: 3,
