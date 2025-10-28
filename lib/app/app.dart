@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 class CraftyBay extends StatefulWidget {
   const CraftyBay({super.key});
 
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   static const String name = '/';
   static final LanguageCotroller languageCotroller = LanguageCotroller();
 
@@ -29,6 +31,7 @@ class _CraftyBayState extends State<CraftyBay> {
       init: CraftyBay.languageCotroller,
       builder: (languageCotroller) {
         return GetMaterialApp(
+          navigatorKey: CraftyBay.navigatorKey,
           // DevicePreview removed — use language controller locale and default builder
           useInheritedMediaQuery: true,
           locale: languageCotroller.currentLocale,
