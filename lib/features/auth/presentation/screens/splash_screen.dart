@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/app/utils/app_version_service.dart';
-import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
 import 'package:e_commerce_app/features/shared/screens/bottom_nav_holder_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';

@@ -2,6 +2,7 @@ import 'package:e_commerce_app/app/app_theme.dart';
 import 'package:e_commerce_app/app/controller/language_cotroller.dart';
 import 'package:e_commerce_app/app/controller_binder.dart';
 import 'package:e_commerce_app/app/utils/routes.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/splash_screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
