@@ -12,7 +12,7 @@ class SignUpRequestModel {
     required this.email,
     required this.password,
     required this.city,
-    required this.phone,
+    required this.phone, required String firstName, required String lastName,
   });
 
   Map<String, dynamic> toJson() {

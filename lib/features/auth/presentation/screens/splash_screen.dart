@@ -1,8 +1,13 @@
+import 'package:e_commerce_app/app/controller/auth_controller.dart';
 import 'package:e_commerce_app/app/utils/app_version_service.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
 import 'package:e_commerce_app/features/shared/screens/bottom_nav_holder_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
   static var name;
@@ -21,8 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _moveToNextScreen() async {
-    await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, BottomNavHolderScreen.name);
+    await Future.delayed(Duration(seconds: 2));
+    bool isUserLoggedIn =
+        await Get.find<AuthController>().isUserAlreadyLoggedIn();
+    if (isUserLoggedIn) {
+      await Get.find<AuthController>().loadUserData();
+    }
+    Navigator.pushReplacementNamed(context, SignUpScreen.name);
   }
 
   @override

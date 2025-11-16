@@ -1,13 +1,12 @@
 import 'package:e_commerce_app/features/auth/data/models/sign_up_request_model.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/controllers/sign_up_controller.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/verify_otp_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/centered_circular_progress.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -19,18 +18,19 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _emailTEControler = TextEditingController();
-  final TextEditingController _firstNameTEControler = TextEditingController();
-  final TextEditingController _lastNameTEControler = TextEditingController();
-  final TextEditingController _mobileTEControler = TextEditingController();
-  final TextEditingController _addressTEControler = TextEditingController();
-  final TextEditingController _passwordTEControler = TextEditingController();
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _lastNameTEController = TextEditingController();
+  final TextEditingController _mobileTEController = TextEditingController();
+  final TextEditingController _addressTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
 
   final SignUpController _signUpController = Get.find<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,101 +38,69 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                SizedBox(
-                  height: 24,
-                ),
-                AppLogo(
-                  width: 80,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  'Create New Account',
-                  style: TextTheme.titleLarge,
-                ),
+                const SizedBox(height: 24),
+                AppLogo(width: 80),
+                const SizedBox(height: 24),
+                Text('Create new account', style: textTheme.titleLarge),
                 Text(
                   'Please enter your details for new account',
-                  style: TextTheme.bodyLarge?.copyWith(color: Colors.grey),
+                  style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 24),
                 TextFormField(
-                  controller: _emailTEControler,
+                  controller: _emailTEController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                  ),
+                  decoration: InputDecoration(hintText: 'Email'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _firstNameTEControler,
+                  controller: _firstNameTEController,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: 'First name',
-                  ),
+                  decoration: InputDecoration(hintText: 'First name'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _lastNameTEControler,
+                  controller: _lastNameTEController,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: 'Last name',
-                  ),
+                  decoration: InputDecoration(hintText: 'Last name'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _mobileTEControler,
+                  controller: _mobileTEController,
+                  textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    hintText: 'Mobile',
-                  ),
+                  decoration: InputDecoration(hintText: 'Mobile'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _addressTEControler,
-                  decoration: InputDecoration(
-                    hintText: 'Address',
-                  ),
+                  controller: _addressTEController,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(hintText: 'Address'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _passwordTEControler,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                  ),
+                  controller: _passwordTEController,
+                  decoration: InputDecoration(hintText: 'Password'),
                 ),
-                SizedBox(
-                  height: 10,
+                const SizedBox(height: 16),
+                GetBuilder<SignUpController>(
+                  builder: (controller) {
+                    return Visibility(
+                      visible: controller.signUpInProgress == false,
+                      replacement: CenteredCircularProgress(),
+                      child: FilledButton(
+                        onPressed: _onTapSignUpButton,
+                        child: Text('Sign Up'),
+                      ),
+                    );
+                  },
                 ),
-                GetBuilder<SignUpController>(builder: (controller) {
-                  return Visibility(
-                    visible: controller.signUpInProgress == false,
-                    replacement: CenteredCircularProgress(),
-                    child: FilledButton(
-                      onPressed: _onTapSignUpButton,
-                      child: Text('SignUp'),
-                    ),
-                  );
-                }),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 TextButton(
-                    onPressed: _onTapBackToLogInButton,
-                    child: Text('Back to log in')),
+                  onPressed: _onTapBackToLoginButton,
+                  child: Text('Back to Login'),
+                ),
               ],
             ),
           ),
@@ -142,39 +110,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onTapSignUpButton() {
-    //TODO: Validate form
+    // TODO: Validate form
     _signUp();
   }
 
   Future<void> _signUp() async {
     SignUpRequestModel model = SignUpRequestModel(
-        firstname: _firstNameTEControler.text.trim(),
-        lastname: _lastNameTEControler.text.trim(),
-        email: _emailTEControler.text.trim(),
-        password: _passwordTEControler.text,
-        city: _addressTEControler.text.trim(),
-        phone: _mobileTEControler.text.trim());
+      firstname: _firstNameTEController.text.trim(),
+      lastname: _lastNameTEController.text.trim(),
+      email: _emailTEController.text.trim(),
+      password: _passwordTEController.text,
+      city: _addressTEController.text.trim(),
+      phone: _mobileTEController.text.trim(), firstName: '', lastName: '',
+    );
     final bool isSuccess = await _signUpController.signUp(model);
     if (isSuccess) {
-      showSnackBarMessage(context, 'Sign up successful! Please Login');
-      Navigator.pushNamed(context, VerifyOtpScreen.name);
+      showSnackBarMessage(context, 'Sign up successful! Please login');
+      Navigator.pushNamed(context, VerifyOtpScreen.name,
+          arguments: _emailTEController.text.trim());
     } else {
       showSnackBarMessage(context, _signUpController.errorMessage!);
     }
   }
 
-  void _onTapBackToLogInButton() {
-    Navigator.pop(context);
+  void _onTapBackToLoginButton() {
+    Navigator.pushNamed(context, SignInScreen.name);
   }
 
   @override
   void dispose() {
-    _emailTEControler.dispose();
-    _firstNameTEControler.dispose();
-    _lastNameTEControler.dispose();
-    _mobileTEControler.dispose();
-    _addressTEControler.dispose();
-    _passwordTEControler.dispose();
+    _emailTEController.dispose();
+    _firstNameTEController.dispose();
+    _lastNameTEController.dispose();
+    _mobileTEController.dispose();
+    _addressTEController.dispose();
+    _passwordTEController.dispose();
     super.dispose();
   }
 }

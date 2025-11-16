@@ -1,49 +1,37 @@
 import 'dart:async';
 import 'package:e_commerce_app/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/centered_circular_progress.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/snack_bar_message.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/verify_otp_controller.dart';
+import 'package:e_commerce_app/features/shared/screens/bottom_nav_holder_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import '../../../../app/controller/auth_controller.dart';
+import '../../../../core/models/verify_otp_request_model.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
-  const VerifyOtpScreen({super.key});
+  const VerifyOtpScreen({super.key, required this.email});
 
   static const String name = '/verify-otp';
+
+  final String email;
 
   @override
   State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  final TextEditingController _otpTEControler = TextEditingController();
+  final TextEditingController _otpTEController = TextEditingController();
 
-  Timer? _timer;
-  int _remainingSeconds = 0; // initially no countdown
-  bool _canResend = false; // resend button state
-  bool _timerStarted = false; // to track if timer started or not
-
-  void _startTimer() {
-    _timer?.cancel();
-    _remainingSeconds = 120;
-    _canResend = false;
-    _timerStarted = true;
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_remainingSeconds > 0) {
-        setState(() {
-          _remainingSeconds--;
-        });
-      } else {
-        timer.cancel();
-        setState(() {
-          _canResend = true;
-        });
-      }
-    });
-  }
+  final VerifyOtpController _verifyOtpController =
+      Get.find<VerifyOtpController>();
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,57 +39,41 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
+                const SizedBox(height: 48),
+                AppLogo(width: 100),
                 const SizedBox(height: 24),
-                const AppLogo(width: 80),
-                const SizedBox(height: 12),
+                Text('Verify OTP', style: textTheme.titleLarge),
                 Text(
-                  'Enter OTP Code',
-                  style: TextTheme.titleLarge,
+                  'A 4 digits OTP has been sent to your email address',
+                  style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
                 ),
-                Text(
-                  'A 6 digit OTP code has been sent to your email',
-                  style: TextTheme.bodyLarge?.copyWith(color: Colors.grey),
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 24),
                 PinCodeTextField(
-                  length: 6,
+                  length: 4,
                   obscureText: false,
                   keyboardType: TextInputType.number,
-                  pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.box,
-                  ),
+                  pinTheme: PinTheme(shape: PinCodeFieldShape.box),
                   animationType: AnimationType.fade,
-                  animationDuration: const Duration(milliseconds: 300),
-                  onChanged: (value) {},
+                  animationDuration: Duration(milliseconds: 300),
                   appContext: context,
-                  controller: _otpTEControler,
-                ),
-                FilledButton(
-                  onPressed: _onTapVerifyButton,
-                  child: const Text('SignUp'),
+                  controller: _otpTEController,
                 ),
                 const SizedBox(height: 16),
-                TextButton(
-                  onPressed: _onTapBackToLogInButton,
-                  child: const Text('Back to Login'),
-                ),
-                const SizedBox(height: 30),
-
-                // 👇 Only show countdown section after pressing SignUp
-                if (_timerStarted) ...[
-                  Text(
-                    'This code will resend in $_remainingSeconds sec',
-                    style: TextTheme.bodyMedium?.copyWith(color: Colors.grey),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: _canResend ? _onTapResendOtp : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _canResend ? Colors.blue : Colors.grey,
+                GetBuilder<VerifyOtpController>(builder: (controller) {
+                  return Visibility(
+                    visible: controller.verifyOtpInProgress == false,
+                    replacement: CenteredCircularProgress(),
+                    child: FilledButton(
+                      onPressed: _onTapVerifyButton,
+                      child: Text('Verify'),
                     ),
-                    child: const Text('Resend OTP'),
-                  ),
-                ],
+                  );
+                }),
+                const SizedBox(height: 16),
+                TextButton(
+                  onPressed: _onTapBackToLoginButton,
+                  child: Text('Back to Login'),
+                ),
               ],
             ),
           ),
@@ -111,25 +83,31 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   }
 
   void _onTapVerifyButton() {
-    // Start countdown when user presses SignUp
-    if (!_timerStarted) {
-      _startTimer();
+    // TODO: Validate form
+    _verifyOtp();
+  }
+
+  Future<void> _verifyOtp() async {
+    VerifyOtpRequestModel model =
+        VerifyOtpRequestModel(email: widget.email, otp: _otpTEController.text);
+    final bool isSuccess = await _verifyOtpController.verifyOtp(model);
+    if (isSuccess) {
+      await Get.find<AuthController>().saveUserData(
+          _verifyOtpController.userModel!, _verifyOtpController.accessToken!);
+      Navigator.pushNamedAndRemoveUntil(
+          context, BottomNavHolderScreen.name, (predicate) => false);
+    } else {
+      showSnackBarMessage(context, _verifyOtpController.errorMessage!);
     }
   }
 
-  void _onTapBackToLogInButton() {
+  void _onTapBackToLoginButton() {
     Navigator.pushNamedAndRemoveUntil(context, SignInScreen.name, (p) => false);
-  }
-
-  void _onTapResendOtp() {
-
-    _startTimer(); 
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
-    _otpTEControler.dispose();
+    _otpTEController.dispose();
     super.dispose();
   }
 }

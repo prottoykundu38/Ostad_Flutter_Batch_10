@@ -1,0 +1,53 @@
+com.example.e_commerce_app-jetified-lifecycle-viewmodel-savedstate-2.7.0-0 C:\Users\prott\.gradle\caches\8.9\transforms\274a3043f6bc41c63143ee13b9a6f9d9\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\res
+com.example.e_commerce_app-jetified-lifecycle-process-2.7.0-1 C:\Users\prott\.gradle\caches\8.9\transforms\2b931efa741f30cbae9b0453ac8e8468\transformed\jetified-lifecycle-process-2.7.0\res
+com.example.e_commerce_app-jetified-startup-runtime-1.1.1-2 C:\Users\prott\.gradle\caches\8.9\transforms\338f5806ccb8b937a4ea285a3820ff61\transformed\jetified-startup-runtime-1.1.1\res
+com.example.e_commerce_app-core-runtime-2.2.0-3 C:\Users\prott\.gradle\caches\8.9\transforms\36749cea346c0f6473d01c7c139cda81\transformed\core-runtime-2.2.0\res
+com.example.e_commerce_app-jetified-lifecycle-viewmodel-ktx-2.7.0-4 C:\Users\prott\.gradle\caches\8.9\transforms\3a805715096882d171ba458c895677bb\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\res
+com.example.e_commerce_app-jetified-fragment-ktx-1.7.1-5 C:\Users\prott\.gradle\caches\8.9\transforms\4aba3641b6e34dd303cb49114fd39596\transformed\jetified-fragment-ktx-1.7.1\res
+com.example.e_commerce_app-appcompat-1.1.0-6 C:\Users\prott\.gradle\caches\8.9\transforms\4b69103dace2ed44d009c572201abccc\transformed\appcompat-1.1.0\res
+com.example.e_commerce_app-jetified-datastore-release-7 C:\Users\prott\.gradle\caches\8.9\transforms\4bfc87641b1d03aa2d766f94741e9a02\transformed\jetified-datastore-release\res
+com.example.e_commerce_app-jetified-window-1.2.0-8 C:\Users\prott\.gradle\caches\8.9\transforms\512be6e9f80a9919ba3acdac5674bd42\transformed\jetified-window-1.2.0\res
+com.example.e_commerce_app-coordinatorlayout-1.0.0-9 C:\Users\prott\.gradle\caches\8.9\transforms\517f6909915016aa34ef0b45f06fc81f\transformed\coordinatorlayout-1.0.0\res
+com.example.e_commerce_app-fragment-1.7.1-10 C:\Users\prott\.gradle\caches\8.9\transforms\519fcb80e0bc12aefd93a84abb262836\transformed\fragment-1.7.1\res
+com.example.e_commerce_app-jetified-annotation-experimental-1.4.0-11 C:\Users\prott\.gradle\caches\8.9\transforms\52cb3c762d97702bccc2c40eb7ef3cc5\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.e_commerce_app-jetified-window-java-1.2.0-12 C:\Users\prott\.gradle\caches\8.9\transforms\55078e9c4afa9de9944b28132756c307\transformed\jetified-window-java-1.2.0\res
+com.example.e_commerce_app-jetified-ads-adservices-1.1.0-beta11-13 C:\Users\prott\.gradle\caches\8.9\transforms\5627628f04365efbc052bea07a2f3e1e\transformed\jetified-ads-adservices-1.1.0-beta11\res
+com.example.e_commerce_app-recyclerview-1.0.0-14 C:\Users\prott\.gradle\caches\8.9\transforms\5bc64db419878f78e4cac239c078e6ff\transformed\recyclerview-1.0.0\res
+com.example.e_commerce_app-preference-1.2.1-15 C:\Users\prott\.gradle\caches\8.9\transforms\5d821533409b92fafe1bef7ee97160fb\transformed\preference-1.2.1\res
+com.example.e_commerce_app-jetified-lifecycle-livedata-core-ktx-2.7.0-16 C:\Users\prott\.gradle\caches\8.9\transforms\656d4ab3f623e0da4b24c115f89d8605\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
+com.example.e_commerce_app-jetified-datastore-preferences-release-17 C:\Users\prott\.gradle\caches\8.9\transforms\6da26f45c8416864f63c658c0918a1c8\transformed\jetified-datastore-preferences-release\res
+com.example.e_commerce_app-transition-1.4.1-18 C:\Users\prott\.gradle\caches\8.9\transforms\6e13fe721d396b11fe6a2d1615a36d5e\transformed\transition-1.4.1\res
+com.example.e_commerce_app-jetified-lifecycle-runtime-ktx-2.7.0-19 C:\Users\prott\.gradle\caches\8.9\transforms\78b06d8154c6eaf09bfdab95be5f7a83\transformed\jetified-lifecycle-runtime-ktx-2.7.0\res
+com.example.e_commerce_app-jetified-play-services-base-18.5.0-20 C:\Users\prott\.gradle\caches\8.9\transforms\79616cf94de282b85a495bc811b6ab9a\transformed\jetified-play-services-base-18.5.0\res
+com.example.e_commerce_app-slidingpanelayout-1.2.0-21 C:\Users\prott\.gradle\caches\8.9\transforms\7c51568904d6c09bfb6c7f3253d93c95\transformed\slidingpanelayout-1.2.0\res
+com.example.e_commerce_app-jetified-firebase-crashlytics-20.0.0-22 C:\Users\prott\.gradle\caches\8.9\transforms\7c6abe75a0d6398f72530a775c677481\transformed\jetified-firebase-crashlytics-20.0.0\res
+com.example.e_commerce_app-jetified-tracing-1.2.0-23 C:\Users\prott\.gradle\caches\8.9\transforms\880706e605239d539fff673f68ec75ec\transformed\jetified-tracing-1.2.0\res
+com.example.e_commerce_app-jetified-firebase-common-22.0.0-24 C:\Users\prott\.gradle\caches\8.9\transforms\8ec313f11d2bf757f9119bffb7bfeb9a\transformed\jetified-firebase-common-22.0.0\res
+com.example.e_commerce_app-jetified-savedstate-ktx-1.2.1-25 C:\Users\prott\.gradle\caches\8.9\transforms\9167b08e90ea98c8e524ee8149776b83\transformed\jetified-savedstate-ktx-1.2.1\res
+com.example.e_commerce_app-jetified-savedstate-1.2.1-26 C:\Users\prott\.gradle\caches\8.9\transforms\98d4f0aafbfb1d9b04d84b55134e863d\transformed\jetified-savedstate-1.2.1\res
+com.example.e_commerce_app-lifecycle-viewmodel-2.7.0-27 C:\Users\prott\.gradle\caches\8.9\transforms\a38d8e1f80374074e5827f8a2fd9d589\transformed\lifecycle-viewmodel-2.7.0\res
+com.example.e_commerce_app-jetified-ads-adservices-java-1.1.0-beta11-28 C:\Users\prott\.gradle\caches\8.9\transforms\a43cd3907acb9ebe992dd51d4f66e8e7\transformed\jetified-ads-adservices-java-1.1.0-beta11\res
+com.example.e_commerce_app-core-1.13.1-29 C:\Users\prott\.gradle\caches\8.9\transforms\a69ca027060e949eb5cd3336e522eafe\transformed\core-1.13.1\res
+com.example.e_commerce_app-jetified-appcompat-resources-1.1.0-30 C:\Users\prott\.gradle\caches\8.9\transforms\b2a0257fc570bc19d8d86c44ae78c30e\transformed\jetified-appcompat-resources-1.1.0\res
+com.example.e_commerce_app-jetified-play-services-basement-18.5.0-31 C:\Users\prott\.gradle\caches\8.9\transforms\b32569c03d1dfe941f640367ee8d6992\transformed\jetified-play-services-basement-18.5.0\res
+com.example.e_commerce_app-jetified-datastore-core-release-32 C:\Users\prott\.gradle\caches\8.9\transforms\c0c60d0797793034dcf6d2b0138f8e4f\transformed\jetified-datastore-core-release\res
+com.example.e_commerce_app-jetified-activity-ktx-1.8.1-33 C:\Users\prott\.gradle\caches\8.9\transforms\cc0c31edeadb6eaf8b6b1e3d5444e3dd\transformed\jetified-activity-ktx-1.8.1\res
+com.example.e_commerce_app-lifecycle-livedata-2.7.0-34 C:\Users\prott\.gradle\caches\8.9\transforms\dc34ec4e211908f778f85bb332d3638a\transformed\lifecycle-livedata-2.7.0\res
+com.example.e_commerce_app-jetified-core-ktx-1.13.1-35 C:\Users\prott\.gradle\caches\8.9\transforms\e389ede4be8f51e926c9f3cf03621acf\transformed\jetified-core-ktx-1.13.1\res
+com.example.e_commerce_app-lifecycle-livedata-core-2.7.0-36 C:\Users\prott\.gradle\caches\8.9\transforms\e4f3bc7c56f98bd131026af350851b93\transformed\lifecycle-livedata-core-2.7.0\res
+com.example.e_commerce_app-lifecycle-runtime-2.7.0-37 C:\Users\prott\.gradle\caches\8.9\transforms\ec6a58863f78c62eec44779eaa6d2d0f\transformed\lifecycle-runtime-2.7.0\res
+com.example.e_commerce_app-jetified-profileinstaller-1.3.1-38 C:\Users\prott\.gradle\caches\8.9\transforms\ef0ed1c4481fb725bb0e2263d1912a25\transformed\jetified-profileinstaller-1.3.1\res
+com.example.e_commerce_app-jetified-activity-1.8.1-39 C:\Users\prott\.gradle\caches\8.9\transforms\f2fc7c8fc4c1fff24480e873a956e93c\transformed\jetified-activity-1.8.1\res
+com.example.e_commerce_app-jetified-core-1.0.0-40 C:\Users\prott\.gradle\caches\8.9\transforms\fc35dc8fce98a6e6b9560176f1009e18\transformed\jetified-core-1.0.0\res
+com.example.e_commerce_app-packaged_res-41 C:\Users\prott\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_analytics-12.0.2\android\build\intermediates\packaged_res\debug
+com.example.e_commerce_app-packaged_res-42 C:\Users\prott\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-4.1.1\android\build\intermediates\packaged_res\debug
+com.example.e_commerce_app-packaged_res-43 C:\Users\prott\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_crashlytics-5.0.2\android\build\intermediates\packaged_res\debug
+com.example.e_commerce_app-packaged_res-44 C:\Users\prott\AppData\Local\Pub\Cache\hosted\pub.dev\package_info_plus-9.0.0\android\build\intermediates\packaged_res\debug
+com.example.e_commerce_app-packaged_res-45 C:\Users\prott\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.7\android\build\intermediates\packaged_res\debug
+com.example.e_commerce_app-pngs-46 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\build\generated\res\pngs\debug
+com.example.e_commerce_app-resValues-47 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\build\generated\res\resValues\debug
+com.example.e_commerce_app-packageDebugResources-48 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.e_commerce_app-packageDebugResources-49 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.e_commerce_app-merged_res-50 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\build\intermediates\merged_res\debug
+com.example.e_commerce_app-debug-51 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\src\debug\res
+com.example.e_commerce_app-main-52 E:\Flutter\Ostad\Project with Rafat_Meraz\e-commerce app\e_commerce_app\android\app\src\main\res
