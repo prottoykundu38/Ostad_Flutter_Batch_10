@@ -1,7 +1,6 @@
 import 'package:e_commerce_app/app/app.dart';
 import 'package:e_commerce_app/app/extensions/localizations_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LanguageChangeSwitch extends StatelessWidget {
   const LanguageChangeSwitch({super.key});
@@ -11,13 +10,13 @@ class LanguageChangeSwitch extends StatelessWidget {
     return ListTile(
       title: Text(context.Localizations.selectLanguage),
       trailing: DropdownMenu<Locale>(
-        dropdownMenuEntries: CraftyBay.languageCotroller.supportedLocales.map(
+        dropdownMenuEntries: CraftyBay.languageController.supportedLocales.map(
           (locale) {
             return DropdownMenuEntry(value: locale, label: locale.languageCode);
           },
         ).toList(),
         onSelected: (Locale? locale) {
-          CraftyBay.languageCotroller.changeLocale(locale!);
+          CraftyBay.languageController.changeLocale(locale!);
         },
       ),
     );

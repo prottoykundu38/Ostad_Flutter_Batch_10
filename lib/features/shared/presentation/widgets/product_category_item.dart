@@ -1,10 +1,11 @@
 import 'package:e_commerce_app/app/app_colors.dart';
 import 'package:e_commerce_app/features/products/product_list_screen.dart';
+import 'package:e_commerce_app/features/shared/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCategoryItem extends StatelessWidget {
   const ProductCategoryItem({
-    super.key,
+    super.key, required CategoryModel categoryModel,
   });
 
   @override

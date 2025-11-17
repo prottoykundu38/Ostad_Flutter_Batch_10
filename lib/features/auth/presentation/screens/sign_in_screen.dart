@@ -1,7 +1,15 @@
 import 'package:e_commerce_app/app/extensions/localizations_extensions.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/controllers/logIn_controller.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/centered_circular_progress.dart';
+import 'package:e_commerce_app/features/auth/presentation/screens/widgets/snack_bar_message.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../app/controller/auth_controller.dart';
+import '../../../shared/screens/bottom_nav_holder_screen.dart';
+import '../../data/models/login_request_model.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,12 +21,15 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final TextEditingController _emailTEControler = TextEditingController();
-  final TextEditingController _passwordTEControler = TextEditingController();
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
+
+  final LoginController _loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,51 +37,44 @@ class _SignInScreenState extends State<SignInScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                SizedBox(
-                  height: 48,
-                ),
-                AppLogo(
-                  width: 90,
-                ),
+                const SizedBox(height: 48),
+                AppLogo(width: 100),
+                const SizedBox(height: 24),
                 Text(
                   context.Localizations.welcomeBack,
-                  style: TextTheme.titleLarge,
+                  style: textTheme.titleLarge,
                 ),
                 Text(
                   context.Localizations.loginHeadline,
-                  style: TextTheme.bodyLarge?.copyWith(color: Colors.grey),
+                  style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 24),
                 TextFormField(
-                  controller: _emailTEControler,
+                  controller: _emailTEController,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                  ),
+                  decoration: InputDecoration(hintText: 'Email'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 8),
                 TextFormField(
-                  controller: _passwordTEControler,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                  ),
+                  controller: _passwordTEController,
+                  decoration: InputDecoration(hintText: 'Password'),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                FilledButton(
-                  onPressed: _onTapLoginButton,
-                  child: Text('Login'),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
+                GetBuilder<LoginController>(builder: (_) {
+                  return Visibility(
+                    visible: _loginController.logInProgress == false,
+                    replacement: CenteredCircularProgress(),
+                    child: FilledButton(
+                      onPressed: _onTapLoginButton,
+                      child: Text('Login'),
+                    ),
+                  );
+                }),
+                const SizedBox(height: 16),
                 TextButton(
-                    onPressed: _onTapSignUpButton, child: Text('sign up')),
+                  onPressed: _onTapSignUpButton,
+                  child: Text('Sign up'),
+                ),
               ],
             ),
           ),
@@ -79,7 +83,25 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  void _onTapLoginButton() {}
+  void _onTapLoginButton() {
+    // TODO: Validate form
+    _signIn();
+  }
+
+  Future<void> _signIn() async {
+    LoginRequestModel model = LoginRequestModel(
+        email: _emailTEController.text.trim(),
+        password: _passwordTEController.text);
+    bool isSuccess = await _loginController.login(model);
+    if (isSuccess) {
+      await Get.find<AuthController>().saveUserData(
+          _loginController.userModel!, _loginController.accessToken!);
+      Navigator.pushNamedAndRemoveUntil(
+          context, BottomNavHolderScreen.name, (predicate) => false);
+    } else {
+      showSnackBarMessage(context, _loginController.errorMessage!);
+    }
+  }
 
   void _onTapSignUpButton() {
     Navigator.pushNamed(context, SignUpScreen.name);
@@ -87,7 +109,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void dispose() {
-    _emailTEControler.dispose();
-    _passwordTEControler.dispose();
+    _emailTEController.dispose();
+    _passwordTEController.dispose();
+    super.dispose();
   }
 }

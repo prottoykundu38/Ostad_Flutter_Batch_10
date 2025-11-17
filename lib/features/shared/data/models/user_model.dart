@@ -6,32 +6,34 @@ class UserModel {
   final String phone;
   final String city;
 
-  UserModel(
-      {required this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.phone,
-      required this.city});
+  UserModel({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.phone,
+    required this.city,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> jsonData) {
     return UserModel(
-        id: jsonData['_id'],
-        firstName: jsonData['firstName'],
-        lastName: jsonData['lastName'],
-        email: jsonData['email'],
-        phone: jsonData['phone'],
-        city: jsonData['city']);
+      id: jsonData['_id'],
+      firstName: jsonData['first_name'],
+      lastName: jsonData['last_name'],
+      email: jsonData['email'],
+      phone: jsonData['phone'],
+      city: jsonData['city'],
+    );
   }
 
-  Map<String, dynamic> tojson() {
+  Map<String, dynamic> toJson() {
     return {
       '_id': id,
       'first_name': firstName,
       'last_name': lastName,
       'email': email,
       'phone': phone,
-      'city': city
+      'city': city,
     };
   }
 }

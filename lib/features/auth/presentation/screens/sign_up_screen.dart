@@ -121,7 +121,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       email: _emailTEController.text.trim(),
       password: _passwordTEController.text,
       city: _addressTEController.text.trim(),
-      phone: _mobileTEController.text.trim(), firstName: '', lastName: '',
+      phone: _mobileTEController.text.trim(),
+      firstName: '',
+      lastName: '',
     );
     final bool isSuccess = await _signUpController.signUp(model);
     if (isSuccess) {
@@ -134,7 +136,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onTapBackToLoginButton() {
-    Navigator.pushNamed(context, SignInScreen.name);
+    // Navigator.pushNamed(context, SignInScreen.name);
+    Navigator.pushReplacementNamed(context, SignInScreen.name);
+
   }
 
   @override
