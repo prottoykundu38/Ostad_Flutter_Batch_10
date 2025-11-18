@@ -5,15 +5,18 @@ import 'package:flutter/material.dart';
 
 class ProductCategoryItem extends StatelessWidget {
   const ProductCategoryItem({
-    super.key, required CategoryModel categoryModel,
+    super.key,
+    required this.categoryModel,
   });
+
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductListScreen.name,
-            arguments: 'Electronics');
+            arguments: categoryModel.title);
       },
       child: Column(
         children: [
@@ -23,18 +26,33 @@ class ProductCategoryItem extends StatelessWidget {
               color: AppColors.themeColor.withOpacity(0.15),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              Icons.computer,
-              size: 32,
-              color: AppColors.themeColor,
+            child: Image.network(
+              categoryModel.icon,
+              height: 32,
+              width: 32,
+              errorBuilder: (_, __, ___) {
+                return Icon(
+                  Icons.error_outline_outlined,
+                  size: 32,
+                );
+              },
             ),
           ),
           const SizedBox(
             height: 4,
           ),
-          Text('Electronics', style: Theme.of(context).textTheme.bodyLarge),
+          Text(
+            _getTitleText(categoryModel.title),
+              style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
     );
+  }
+
+  String _getTitleText(String text) {
+    if (text.length < 10) {
+      return text;
+    }
+    return "${text.substring(0,9)}...";
   }
 }

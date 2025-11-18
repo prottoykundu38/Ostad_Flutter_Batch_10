@@ -7,6 +7,8 @@ import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../presentation/controllers/category_controller.dart';
+
 class BottomNavHolderScreen extends StatefulWidget {
   static const String name = '/bottom-nav-holder';
   const BottomNavHolderScreen({super.key});
@@ -29,6 +31,7 @@ class _BottomNavHolderScreenState extends State<BottomNavHolderScreen> {
   void initState() {
     super.initState();
     Get.find<HomeSliderController>().getHomeSliders();
+    Get.find<CategoryController>().getCategoryList();
   }
 
   @override
