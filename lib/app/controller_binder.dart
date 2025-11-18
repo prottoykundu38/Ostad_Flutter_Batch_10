@@ -13,12 +13,11 @@ class ControllerBinding extends Bindings {
   void dependencies() {
     Get.put(AuthController());
     Get.put(MainNavController());
-    Get.put(CategoryController());
     Get.put(setUpNetworkClient());
     Get.put(SignUpController());
     Get.put(VerifyOtpController());
     Get.put(LoginController());
     Get.put(HomeSliderController());
-    
+    Get.put(CategoryController());
   }
 }
