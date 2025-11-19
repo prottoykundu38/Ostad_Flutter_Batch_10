@@ -4,6 +4,7 @@ import 'package:e_commerce_app/features/auth/presentation/screens/splash_screen.
 import 'package:e_commerce_app/features/auth/presentation/screens/verify_otp_screen.dart';
 import 'package:e_commerce_app/features/products/product_details_screen.dart';
 import 'package:e_commerce_app/features/products/product_list_screen.dart';
+import 'package:e_commerce_app/features/shared/data/models/category_model.dart';
 import 'package:e_commerce_app/features/shared/screens/bottom_nav_holder_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +25,8 @@ MaterialPageRoute onGenerateRoute(
   } else if (setting.name == BottomNavHolderScreen.name) {
     screen = BottomNavHolderScreen();
   } else if (setting.name == ProductListScreen.name) {
-    final String category = setting.arguments as String;
-    screen = ProductListScreen(categoryName: category);
+    final CategoryModel category = setting.arguments as CategoryModel;
+    screen = ProductListScreen(category: category, categoryName: '',);
   } else if (setting.name == ProductDetailsScreen.name) {
     screen = ProductDetailsScreen();
   }

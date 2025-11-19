@@ -16,7 +16,7 @@ class ProductCategoryItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductListScreen.name,
-            arguments: categoryModel.title);
+            arguments: categoryModel);
       },
       child: Column(
         children: [
@@ -41,8 +41,7 @@ class ProductCategoryItem extends StatelessWidget {
           const SizedBox(
             height: 4,
           ),
-          Text(
-            _getTitleText(categoryModel.title),
+          Text(_getTitleText(categoryModel.title),
               style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
@@ -53,6 +52,6 @@ class ProductCategoryItem extends StatelessWidget {
     if (text.length < 10) {
       return text;
     }
-    return "${text.substring(0,9)}...";
+    return "${text.substring(0, 9)}...";
   }
 }

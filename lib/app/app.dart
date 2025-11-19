@@ -3,6 +3,7 @@ import 'package:e_commerce_app/app/controller/language_cotroller.dart';
 import 'package:e_commerce_app/app/controller_binder.dart';
 import 'package:e_commerce_app/app/utils/routes.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/splash_screen.dart';
+import 'package:e_commerce_app/features/home/presentation/screens/home_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _CraftyBayState extends State<CraftyBay> {
           theme: AppTheme.lightThemeData,
           darkTheme: AppTheme.darkThemeData,
           themeMode: ThemeMode.light,
-          home: SplashScreen(),
+          home: HomeScreen(),
           initialRoute: SplashScreen.name,
           onGenerateRoute: onGenerateRoute,
           initialBinding: ControllerBinding(),
