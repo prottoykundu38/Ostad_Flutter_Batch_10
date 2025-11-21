@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/app/controller/auth_controller.dart';
 import 'package:e_commerce_app/app/utils/app_version_service.dart';
-import 'package:e_commerce_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:e_commerce_app/features/auth/presentation/screens/widgets/app_logo.dart';
+import 'package:e_commerce_app/features/shared/screens/bottom_nav_holder_screen.dart';
 import 'package:e_commerce_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isUserLoggedIn) {
       await Get.find<AuthController>().loadUserData();
     }
-    Navigator.pushReplacementNamed(context, SignUpScreen.name);
+    Navigator.pushReplacementNamed(context, BottomNavHolderScreen.name);
   }
 
   @override

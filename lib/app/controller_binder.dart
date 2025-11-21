@@ -19,5 +19,8 @@ class ControllerBinding extends Bindings {
     Get.put(LoginController());
     Get.put(HomeSliderController());
     Get.put(CategoryController());
+    // Get.put(ProductListController(tag: ''));
+    
+
   }
 }

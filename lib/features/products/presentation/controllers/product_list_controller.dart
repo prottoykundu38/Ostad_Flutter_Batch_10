@@ -1,75 +1,62 @@
-import 'package:e_commerce_app/features/shared/data/models/product_model.dart';
 import 'package:get/get.dart';
 import '../../../../app/urls.dart';
 import '../../../../core/models/network_response.dart';
 import '../../../../core/services/network_caller.dart';
+import '../../../shared/data/models/product_model.dart';
 
 class ProductListController extends GetxController {
+  final String tag; // new, special, popular, or categoryId
+
+  ProductListController({required this.tag});
+
   int _currentPage = 0;
-
   int? _lastPageNo;
+  final int _pageSize = 20;
 
-  final int _pageSize = 40;
+  bool initialLoading = false;
+  bool loading = false;
 
-  bool _getProductListInProgress = false;
+  final List<ProductModel> _products = [];
 
-  bool _isInitialLoading = false;
+  List<ProductModel> get products => _products;
 
-  final List<ProductModel> _productList = [];
+  Future<void> fetchProducts() async {
+    if (_currentPage > (_lastPageNo ?? 1)) return;
 
-  String? _errorMessage;
-
-  bool get getProductsInProgress => _getProductListInProgress;
-
-  bool get isInitialLoading => _isInitialLoading;
-
-  List<ProductModel> get productList => _productList;
-
-  String? get errorMessage => _errorMessage;
-
-  Future<bool> getProductListByCategory(String categoryId) async {
-    bool isSuccess = false;
-
-    if (_currentPage > (_lastPageNo ?? 1)) {
-      return false;
-    }
     if (_currentPage == 0) {
-      _productList.clear();
-      _isInitialLoading = true;
+      _products.clear();
+      initialLoading = true;
     } else {
-      _getProductListInProgress = true;
+      loading = true;
     }
     update();
 
     _currentPage++;
 
-    final NetworkResponse response = await Get.find<NetworkCaller>()
-        .getRequest(url: Urls.productList(_currentPage, _pageSize, categoryId));
+    final url = Urls.productList(_currentPage, _pageSize, tag);
+    print("Fetching products for tag=$tag, URL=$url");
+
+    final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(url: url);
+
     if (response.isSuccess) {
       _lastPageNo = response.body!['data']['last_page'];
       List<ProductModel> list = [];
       for (Map<String, dynamic> jsonData in response.body!['data']['results']) {
         list.add(ProductModel.fromJson(jsonData));
       }
-      _productList.addAll(list);
-      isSuccess = true;
-      _errorMessage = null;
+      _products.addAll(list);
+      print("Products fetched for tag=$tag: ${_products.length}");
     } else {
-      _errorMessage = response.errorMessage;
+      print("Failed to fetch products for tag=$tag, error: ${response.errorMessage}");
     }
 
-    if (_isInitialLoading) {
-      _isInitialLoading = false;
-    } else {
-      _getProductListInProgress = false;
-    }
-
+    initialLoading = false;
+    loading = false;
     update();
-    return isSuccess;
   }
 
-  Future<void> refreshProductList(String categoryId) async {
+  void refreshProducts() {
     _currentPage = 0;
-    getProductListByCategory(categoryId);
+    fetchProducts();
   }
 }

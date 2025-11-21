@@ -26,7 +26,7 @@ MaterialPageRoute onGenerateRoute(
     screen = BottomNavHolderScreen();
   } else if (setting.name == ProductListScreen.name) {
     final CategoryModel category = setting.arguments as CategoryModel;
-    screen = ProductListScreen(category: category, categoryName: '',);
+    screen = ProductListScreen(category: category);
   } else if (setting.name == ProductDetailsScreen.name) {
     screen = ProductDetailsScreen();
   }

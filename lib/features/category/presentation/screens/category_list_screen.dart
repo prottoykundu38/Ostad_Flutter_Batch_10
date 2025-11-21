@@ -2,7 +2,6 @@ import 'package:e_commerce_app/features/shared/presentation/controllers/main_nav
 import 'package:e_commerce_app/features/shared/presentation/widgets/product_category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../auth/presentation/screens/widgets/centered_circular_progress.dart';
 import '../../../shared/presentation/controllers/category_controller.dart';
 
