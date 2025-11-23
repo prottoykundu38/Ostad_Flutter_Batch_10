@@ -5,7 +5,7 @@ import '../../../../core/services/network_caller.dart';
 import '../../../shared/data/models/product_model.dart';
 
 class ProductListController extends GetxController {
-  final String tag; // "new", "special", "popular" অথবা categoryId
+  final String tag; 
 
   ProductListController({required this.tag});
 

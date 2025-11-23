@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 class ProductImageSlider extends StatefulWidget {
   const ProductImageSlider({
     super.key,
+    required this.imageurls,
   });
+
+  final List<String> imageurls;
 
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
@@ -27,17 +30,26 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
 
                 // });
               }),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.imageurls.map((Image) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.grey.shade300,
-                    alignment: Alignment.center,
-                    child: Text(
-                      'text $i',
-                      style: TextStyle(fontSize: 16.0),
-                    ));
+                  width: MediaQuery.of(context).size.width,
+                  // color: Colors.grey.shade300,
+                  alignment: Alignment.center,
+                  // child: Text(
+                  //   'text $i',
+                  //   style: TextStyle(fontSize: 16.0),
+                  // ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        Image,
+                      ),
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                );
               },
             );
           }).toList(),
@@ -52,7 +64,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < widget.imageurls.length; i++)
                       Container(
                         width: 12,
                         height: 12,
