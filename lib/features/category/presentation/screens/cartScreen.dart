@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/app/app_colors.dart';
 import 'package:e_commerce_app/app/asset_paths.dart';
 import 'package:e_commerce_app/app/constants.dart';
-import 'package:e_commerce_app/features/products/presentation/widgets/total_price_and_cart_section.dart';
+import 'package:e_commerce_app/features/category/presentation/screens/widgets/total_price_and_checkout_section.dart';
 import 'package:e_commerce_app/features/shared/presentation/widgets/inc_dec_button.dart';
 import 'package:flutter/material.dart';
 
@@ -94,7 +94,7 @@ class _CartscreenState extends State<Cartscreen> {
               },
             ),
           ),
-          TotalPriceAndCartSection(),
+          TotalPriceAndCheckoutSection(),
         ],
       ),
     );

@@ -67,7 +67,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         controller.productDetails?.title ?? '',
@@ -84,7 +85,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           Text(
                                             controller.productDetails?.rating ??
                                                 '',
-                                            style: const TextStyle(fontSize: 18),
+                                            style:
+                                                const TextStyle(fontSize: 18),
                                           ),
                                           const SizedBox(width: 8),
                                           TextButton(
@@ -129,8 +131,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                               const SizedBox(height: 8),
                               ColorPicker(
-                                colors:
-                                    controller.productDetails?.colors ?? [],
+                                colors: controller.productDetails?.colors ?? [],
                                 onSelected: (color) {},
                               ),
                               const SizedBox(height: 16),
@@ -144,8 +145,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                               const SizedBox(height: 8),
                               SizePicker(
-                                sizes:
-                                    controller.productDetails?.sizes ?? [],
+                                sizes: controller.productDetails?.sizes ?? [],
                                 onSelected: (size) {},
                               ),
                               const SizedBox(height: 16),
@@ -171,7 +171,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
-              TotalPriceAndCartSection(),
+              TotalPriceAndCartSection(
+                productModel: controller.productDetails!,
+              ),
             ],
           );
         },
