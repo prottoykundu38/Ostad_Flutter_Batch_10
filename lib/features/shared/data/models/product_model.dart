@@ -2,14 +2,14 @@ class ProductModel {
   final String id;
   final String title;
   final List<String> photos;
-  final int currentprice;
+  final int currentPrice; 
   final double rating;
 
   ProductModel(
       {required this.id,
       required this.title,
       required this.photos,
-      required this.currentprice,
+      required this.currentPrice,   
       required this.rating});
 
   factory ProductModel.fromJson(Map<String, dynamic> jsonData) {
@@ -17,7 +17,7 @@ class ProductModel {
       id: jsonData['_id'],
       title: jsonData['title'],
       photos: List<String>.from(jsonData['photos'].map((e) => e).toList()),
-      currentprice: jsonData['current_price'],
+      currentPrice: jsonData['current_price'] ?? 0, 
       rating: 2.0,
     );
   }

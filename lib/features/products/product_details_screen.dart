@@ -13,6 +13,7 @@ class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key, required this.productId});
 
   static const String name = '/product-details';
+
   final String productId;
 
   @override
@@ -36,12 +37,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Product Details')),
+      appBar: AppBar(title: Text('Product Details')),
       body: GetBuilder(
         init: _productDetailsController,
         builder: (controller) {
           if (controller.getproductDetailsInProgress) {
-            return const CenteredCircularProgress();
+            return CenteredCircularProgress();
           }
 
           if (controller.errorMessage != null) {
@@ -63,7 +64,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Column(
@@ -76,31 +76,36 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                      const SizedBox(height: 6),
                                       Row(
                                         children: [
-                                          const Icon(Icons.star,
-                                              size: 22, color: Colors.amber),
-                                          const SizedBox(width: 4),
-                                          Text(
-                                            controller.productDetails?.rating ??
-                                                '',
-                                            style:
-                                                const TextStyle(fontSize: 18),
+                                          Wrap(
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                size: 24,
+                                                color: Colors.amber,
+                                              ),
+                                              Text(
+                                                controller
+                                                        .productDetails
+                                                        ?.rating ??
+                                                    '',
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(width: 8),
                                           TextButton(
-                                              onPressed: () {},
-                                              child: const Text('Reviews')),
-                                          const SizedBox(width: 6),
+                                            onPressed: () {},
+                                            child: Text('Reviews'),
+                                          ),
                                           Card(
                                             color: AppColors.themeColor,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                             ),
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(2),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(2),
                                               child: Icon(
                                                 Icons.favorite_outline,
                                                 size: 18,
@@ -115,50 +120,48 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                                 SizedBox(
                                   width: 80,
-                                  child: IncDecButton(
-                                    onChange: (value) {},
-                                  ),
+                                  child: IncDecButton(onChange: (int value) {}),
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 16),
-                            if ((controller.productDetails?.colors ?? [])
-                                .isNotEmpty) ...[
-                              const Text(
-                                'Color',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                            const SizedBox(height: 8),
+                            Visibility(
+                              visible: (controller.productDetails?.colors ?? [])
+                                  .isNotEmpty,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Text(
+                                  'Color',
+                                  style: TextStyle(fontSize: 18),
+                                ),
                               ),
-                              const SizedBox(height: 8),
-                              ColorPicker(
-                                colors: controller.productDetails?.colors ?? [],
-                                onSelected: (color) {},
-                              ),
-                              const SizedBox(height: 16),
-                            ],
-                            if ((controller.productDetails?.sizes ?? [])
-                                .isNotEmpty) ...[
-                              const Text(
-                                'Size',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 8),
-                              SizePicker(
-                                sizes: controller.productDetails?.sizes ?? [],
-                                onSelected: (size) {},
-                              ),
-                              const SizedBox(height: 16),
-                            ],
-                            const Text(
-                              'Description',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(height: 6),
+                            const SizedBox(height: 8),
+                            ColorPicker(
+                              colors: controller.productDetails?.colors ?? [],
+                              onSelected: (String color) {},
+                            ),
+                            const SizedBox(height: 16),
+                            Visibility(
+                              visible: (controller.productDetails?.sizes ?? [])
+                                  .isNotEmpty,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Text(
+                                  'Size',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ),
+                            ),
+                            SizePicker(
+                              sizes: controller.productDetails?.sizes ?? [],
+                              onSelected: (String size) {},
+                            ),
+                            const SizedBox(height: 16),
+                            Text('Description', style: TextStyle(fontSize: 18)),
                             Text(
                               controller.productDetails?.description ?? '',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.grey,

@@ -25,9 +25,7 @@ class ProductDetailsModel {
       photos: List<String>.from(jsonData['photos'].map((e) => e).toList()),
       colors: List<String>.from(jsonData['colors'].map((e) => e).toList()),
       sizes: List<String>.from(jsonData['sizes'].map((e) => e).toList()),
-      currentPrice: jsonData['currentPrice'] == null
-          ? 0
-          : int.tryParse(jsonData['currentPrice'].toString()) ?? 0,
+      currentPrice: jsonData['current_price'] ?? 0, 
     );
   }
 }

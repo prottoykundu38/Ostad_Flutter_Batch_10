@@ -21,7 +21,7 @@ class _BottomNavHolderScreenState extends State<BottomNavHolderScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     CategoryListScreen(),
-    Cartscreen(),
+    CartScreen(),
     WishListScreen(
       categoryName: 'Wish list',
     ),

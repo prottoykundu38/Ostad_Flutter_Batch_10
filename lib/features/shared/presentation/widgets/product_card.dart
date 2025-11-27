@@ -3,11 +3,14 @@ import 'package:e_commerce_app/app/constants.dart';
 import 'package:e_commerce_app/features/products/product_details_screen.dart';
 import 'package:e_commerce_app/features/shared/data/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../category/presentation/controllers/wish_list_controller.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    super.key, required this.productModel,
-    
+    super.key,
+    required this.productModel,
   });
 
   final ProductModel productModel;
@@ -16,7 +19,11 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetailsScreen.name, arguments: productModel.id);
+        Navigator.pushNamed(
+          context,
+          ProductDetailsScreen.name,
+          arguments: productModel.id,
+        );
       },
       child: Card(
         color: Colors.white,
@@ -29,17 +36,18 @@ class ProductCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    color: AppColors.themeColor.withOpacity(0.1),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    )),
+                  color: AppColors.themeColor.withOpacity(0.1),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                ),
                 child: Image.network(
                   productModel.photos.firstOrNull ?? '',
                   width: 140,
                   height: 80,
                   errorBuilder: (_, __, ___) {
-                    return SizedBox(
+                    return const SizedBox(
                       width: 140,
                       height: 80,
                       child: Icon(
@@ -59,19 +67,21 @@ class ProductCard extends StatelessWidget {
                     Text(
                       productModel.title,
                       maxLines: 1,
-                      style: const TextStyle(overflow: TextOverflow.ellipsis),
+                      style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     Row(
-                      // spacing: 4;
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '$takaSign${productModel.currentprice}',
+                          '$takaSign${productModel.currentPrice}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColors.themeColor,
                           ),
                         ),
+
                         Wrap(
                           children: [
                             const Icon(
@@ -82,20 +92,38 @@ class ProductCard extends StatelessWidget {
                             Text(productModel.rating.toString()),
                           ],
                         ),
-                        Card(
-                          color: AppColors.themeColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(2),
-                            child: Icon(
-                              Icons.favorite_outline,
-                              size: 14,
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
+
+                        // ❤️ Wishlist Button (WORKING)
+                        GetBuilder<WishListController>(
+                          builder: (wish) {
+                            final bool isFav =
+                                wish.isInWishList(productModel.id);
+
+                            return GestureDetector(
+                              onTap: () {
+                                wish.toggleWish(productModel);
+                              },
+                              child: Card(
+                                color: isFav
+                                    ? Colors.red
+                                    : AppColors.themeColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: Icon(
+                                    isFav
+                                        ? Icons.favorite
+                                        : Icons.favorite_outline,
+                                    size: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
