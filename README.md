@@ -89,7 +89,7 @@ The app provides **secure authentication**, **product browsing**, **cart & check
 # ⚙️ HOW TO RUN THE PROJECT
 
 1. Clone the repository
-  git clone https://github.com/arnob444/ecommerce_app.git
+  git clone https://github.com/prottoykundu38/Ostad_Flutter_Batch_10/tree/E-commerce-app
    
 2. Go to the project directory
      cd todo_list
