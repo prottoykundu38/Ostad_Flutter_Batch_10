@@ -1,6 +1,6 @@
-# 📱 ECOMMERCE APP – FLUTTER
+## 📱 Ecommerce App – Flutter
 
-## 🚀 A Modern & Scalable Ecommerce Mobile Application
+### 🚀 A Modern & Scalable Ecommerce Mobile Application
 
 A **modern, scalable, and production-ready eCommerce mobile application** built with **Flutter**.  
 This project follows **clean architecture principles** and uses **GetX** for state management, dependency injection, and routing.
@@ -9,63 +9,63 @@ The app provides **secure authentication**, **product browsing**, **cart & check
 
 ---
 
-# 🚀 FEATURES
+## 🚀 Features
 
-## 🛒 CORE ECOMMERCE FEATURES
-- User registration and login  
-- Product listing with category browsing  
-- Product details with image gallery  
-- Add to cart and update cart items  
-- Checkout and order placement  
+### 🛒 Core Ecommerce Features
+- User registration and login
+- Product listing with category browsing
+- Product details with image gallery
+- Add to cart and update cart items
+- Checkout and order placement
 
-## 🔐 AUTHENTICATION & SECURITY
-- Token-based authentication system  
-- Secure API communication  
-- Session persistence using **SharedPreferences**  
-- Auto-login on application startup  
+### 🔐 Authentication & Security
+- Token-based authentication system
+- Secure API communication
+- Session persistence using **SharedPreferences**
+- Auto-login on application startup
 
-## 💳 PAYMENT INTEGRATION
-- Online payment gateway integration using **SSLCommerz**  
+### 💳 Payment Integration
+- Online payment gateway integration using **SSLCommerz**
 
-## 📡 NETWORKING & API HANDLING
-- Custom `NetworkCaller` for REST API communication  
-- Centralized response handling with `NetworkResponse`  
-- Token support for secure API requests  
-- Global error handling strategy  
+### 📡 Networking & API Handling
+- Custom `NetworkCaller` for REST API communication
+- Centralized response handling with `NetworkResponse`
+- Token support for secure API requests
+- Global error handling strategy
 
-## 🎨 UI & USER EXPERIENCE
-- Fully responsive UI layout  
-- Carousel slider for banners  
-- SVG image support  
-- SafeArea usage for device compatibility  
-- Reusable widgets and modular screen architecture  
+### 🎨 UI & User Experience
+- Fully responsive UI layout
+- Carousel slider for banners
+- SVG image support
+- SafeArea usage for device compatibility
+- Reusable widgets and modular screen architecture
 
-## 🧠 STATE MANAGEMENT (GETX)
-- Built using **GetX**  
-- Feature-based controllers  
-- Dependency Injection  
-- Route & navigation management  
-- Supports both `GetBuilder` and `Obx`  
+### 🧠 State Management (GetX)
+- Built using **GetX**
+- Feature-based controllers
+- Dependency Injection
+- Route & navigation management
+- Supports both `GetBuilder` and `Obx`
 
-## ⚙️ UTILITIES & HELPERS
-- App version info using `package_info_plus`  
-- Debug logging with `logger`  
-- Local caching via `SharedPreferences`  
+### ⚙️ Utilities & Helpers
+- App version info using `package_info_plus`
+- Debug logging with `logger`
+- Local caching via `SharedPreferences`
 
-## 📊 ANALYTICS & STABILITY
-- **Firebase Analytics** for user behavior tracking  
-- **Firebase Crashlytics** for real-time crash reporting  
+### 📊 Analytics & Stability
+- **Firebase Analytics** for user behavior tracking
+- **Firebase Crashlytics** for real-time crash reporting
 
-## 🌍 LOCALIZATION
-- Multi-language ready  
-- Built using Flutter localization framework  
-- Powered by the `intl` package  
+### 🌍 Localization
+- Multi-language ready
+- Built using Flutter localization framework
+- Powered by the `intl` package
 
 ---
 
-# 📦 TECHNOLOGY STACK
+## 📦 Technology Stack
 
-| CATEGORY | TECHNOLOGIES |
+| Category | Technologies |
 |--------|-------------|
 | Framework | Flutter, Dart |
 | State Management | GetX |
@@ -78,16 +78,14 @@ The app provides **secure authentication**, **product browsing**, **cart & check
 
 ---
 
-# 📸 SCREENSHOTS
+## 📸 Screenshots
 
-## 🏠 HOME SCREEN
-<img width="1600" height="957" alt="image" src="https://github.com/user-attachments/assets/78477954-e967-4278-b88a-b280220f7e94" />
-
+### 🏠 Home Screen
+<img width="1600" height="957" alt="Home Screen" src="https://github.com/user-attachments/assets/78477954-e967-4278-b88a-b280220f7e94" />
 
 ---
 
-# ⚙️ HOW TO RUN THE PROJECT
-
+## ⚙️ How to Run the Project
 1. Clone the repository
   git clone https://github.com/prottoykundu38/Ostad_Flutter_Batch_10/tree/E-commerce-app
    
@@ -100,42 +98,42 @@ The app provides **secure authentication**, **product browsing**, **cart & check
 4. Run the app
      flutter run
 
-# 📦 DEPENDENCIES
+## 📦 Dependencies
 
-## CORE FLUTTER
+### Core Flutter
 - flutter_localizations
 - cupertino_icons
 
-## STATE MANAGEMENT
+### State Management
 - get
 
-## NETWORKING
+### Networking
 - http
 
-## FIREBASE
+### Firebase
 - firebase_core
 - firebase_analytics
 - firebase_crashlytics
 
-## UI & UX
+### UI & UX
 - flutter_svg
 - carousel_slider
 - pin_code_fields
 
-## STORAGE & UTILITIES
+### Storage & Utilities
 - shared_preferences
 - package_info_plus
 - logger
 
-## PAYMENT
+### Payment
 - flutter_sslcommerz
 
-## LOCALIZATION
+### Localization
 - intl
 
 ---
 
-# 🛠 FUTURE ENHANCEMENTS
+## 🛠 Future Enhancements
 - Wishlist feature
 - Order history and tracking
 - Push notifications
